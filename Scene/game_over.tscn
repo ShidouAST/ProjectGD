@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://4prwu3to46gu"]
+
+[ext_resource type="Script" uid="uid://dqngabo127ksc" path="res://Script/game_over.gd" id="1_lwxdm"]
+[ext_resource type="Texture2D" uid="uid://c4u4ug3moi8k2" path="res://Asset/restart.png" id="2_mjsgh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vcvjm"]
+texture = ExtResource("2_mjsgh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p2t86"]
+texture = ExtResource("2_mjsgh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_di31r"]
+texture = ExtResource("2_mjsgh")
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_lwxdm")
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 342.0
+offset_top = 350.0
+offset_right = 502.0
+offset_bottom = 413.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_vcvjm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p2t86")
+theme_override_styles/normal = SubResource("StyleBoxTexture_di31r")
+
+[node name="HighScoreLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "High Score: "
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
