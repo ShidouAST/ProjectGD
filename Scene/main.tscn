@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfk3dito5020i"]
+[gd_scene load_steps=9 format=3 uid="uid://dfk3dito5020i"]
 
 [ext_resource type="Texture2D" uid="uid://q8od0xtc7nr" path="res://Asset/bg.png" id="1_f6udf"]
 [ext_resource type="Script" uid="uid://r07r18h4qhud" path="res://Script/main.gd" id="1_r34rm"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ct1tm1lwlnpj2" path="res://Scene/ground.tscn" id="4_2wwxx"]
 [ext_resource type="Script" uid="uid://bee21itrw7bjr" path="res://Script/score_label.gd" id="6_1xcnr"]
 [ext_resource type="PackedScene" uid="uid://4prwu3to46gu" path="res://Scene/game_over.tscn" id="7_ow1sv"]
+[ext_resource type="AudioStream" uid="uid://dx07gwwuiahss" path="res://Asset/sound/hit_sfx.mp3" id="8_75buv"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_r34rm")
@@ -38,6 +39,9 @@ z_index = 1
 wait_time = 1.5
 
 [node name="GameOver" parent="." instance=ExtResource("7_ow1sv")]
+
+[node name="die_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_75buv")
 
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkitqcncd68ga"]
+[gd_scene load_steps=10 format=3 uid="uid://bkitqcncd68ga"]
 
 [ext_resource type="Texture2D" uid="uid://bsv8y2ltcioge" path="res://Asset/pipe.png" id="1_s7mr4"]
 [ext_resource type="Script" uid="uid://k57tuw4dgkyb" path="res://Script/pipe.gd" id="1_ssxuh"]
+[ext_resource type="AudioStream" uid="uid://dwwcq3b7s25lv" path="res://Asset/sound/point_sfx.mp3" id="3_s183f"]
+[ext_resource type="AudioStream" uid="uid://dx07gwwuiahss" path="res://Asset/sound/hit_sfx.mp3" id="4_du0m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssxuh"]
 size = Vector2(78, 35.5)
@@ -51,6 +53,12 @@ shape = SubResource("RectangleShape2D_vgtpv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
 position = Vector2(91, 0)
 shape = SubResource("RectangleShape2D_8lfbd")
+
+[node name="point_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_s183f")
+
+[node name="hit_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_du0m1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://iibpby0usj5w"]
+[gd_scene load_steps=9 format=3 uid="uid://iibpby0usj5w"]
 
 [ext_resource type="Script" uid="uid://dli0dobny8eds" path="res://Script/bird.gd" id="1_524eg"]
 [ext_resource type="Texture2D" uid="uid://dqhwoevvl5l0e" path="res://Asset/bird1.png" id="2_2aaf0"]
 [ext_resource type="Texture2D" uid="uid://dj7pp74oq0pv3" path="res://Asset/bird2.png" id="3_rg1oe"]
 [ext_resource type="Texture2D" uid="uid://bdda3s6xkl0ub" path="res://Asset/bird3.png" id="4_jydsq"]
+[ext_resource type="AudioStream" uid="uid://2kc86tb1k73f" path="res://Asset/sound/flap_sfx.mp3" id="5_2aaf0"]
+[ext_resource type="AudioStream" uid="uid://di8oi7d7mbkl3" path="res://Asset/sound/die_sfx.mp3" id="6_rg1oe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0eug"]
 animations = [{
@@ -38,3 +40,9 @@ frame_progress = 0.841969
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bexyi")
+
+[node name="jump_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2aaf0")
+
+[node name="die_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rg1oe")

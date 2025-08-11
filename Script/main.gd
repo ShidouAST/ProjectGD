@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var pipe_scene : PackedScene
+@onready var die_sfx: AudioStreamPlayer2D = $die_sfx
+
 
 var game_running : bool
 var game_over : bool
@@ -10,6 +12,7 @@ var init_high_score : int
 var save_data = {
 	"high_score": 0
 }
+var hit_count : int = 1
 const SCROLL_SPEED : int = 4
 var screen_size : Vector2i
 var ground_height : int
@@ -26,6 +29,9 @@ func _ready() -> void:
 
 func new_game():
 	# resetting variables
+	$Bird.fallsound = 1
+	hit_count = 1
+	#$Pipe
 	game_running = false
 	game_over = false
 	ground_running = true
@@ -91,24 +97,6 @@ func check_top():
 
 func stop_game():
 	$PipeTimer.stop()
-	$Bird.flying = false
-	game_running = false
-	game_over = true
-	ground_running = false
-	$GameOver.show()
-
-func bird_hit():
-	$Bird.falling = true
-	stop_game()
-	pass
-
-func scored():
-	print("The Bird Scored")
-	score += 1
-	$Background/ScoreLabel.text = "Score: " + str(score)
-	
-func _on_ground_hit() -> void:
-	$Bird.falling = false
 	print("Your score: " + str(score))
 	if score > save_data["high_score"]:
 		print("This is your highest score!")
@@ -117,6 +105,29 @@ func _on_ground_hit() -> void:
 		save_high_score()
 	else:
 		$GameOver/HighScoreLabel.text = "High Score: " + str(save_data["high_score"])
+	$Bird.flying = false
+	game_running = false
+	game_over = true
+	ground_running = false
+	$GameOver.show()
+
+func bird_hit():
+	$Bird.falling = true
+	if(hit_count == 1):
+		die_sfx.play()
+		hit_count = 0
+	stop_game()
+	pass
+
+func scored():
+	score += 1
+	$Background/ScoreLabel.text = "Score: " + str(score)
+	
+func _on_ground_hit() -> void:
+	$Bird.falling = false
+	if(hit_count == 1):
+		die_sfx.play()
+		hit_count = 0
 	stop_game()
 
 func save_high_score():
@@ -133,4 +144,8 @@ func load_high_score():
 func _on_game_over_restart() -> void:
 	new_game()
 
+#func die_fall_sound():
+	#die_sfx.play()
+	
+	
 	
