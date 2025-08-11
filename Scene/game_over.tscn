@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4prwu3to46gu"]
+[gd_scene load_steps=7 format=3 uid="uid://4prwu3to46gu"]
 
 [ext_resource type="Script" uid="uid://dqngabo127ksc" path="res://Script/game_over.gd" id="1_lwxdm"]
 [ext_resource type="Texture2D" uid="uid://c4u4ug3moi8k2" path="res://Asset/restart.png" id="2_mjsgh"]
+[ext_resource type="AudioStream" uid="uid://1w0pe8x4jjfp" path="res://Asset/sound/swoosh_sfx.mp3" id="3_mjsgh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vcvjm"]
 texture = ExtResource("2_mjsgh")
@@ -38,5 +39,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "High Score: "
+
+[node name="swoosh_sfx" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(318.5, 440.5)
+stream = ExtResource("3_mjsgh")
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
